@@ -65,10 +65,51 @@ var grp =
 
 function convert_number(n)
 {
+    n = n.replace(/\,/g,'');//remove comma's
+
+    if ( parseFloat(n) == n)
+        document.getElementById('msg').innerHTML = "";
+    else
+    {
+        document.getElementById('msg').innerHTML = "Not a number.  Try again.";
+        return;
+    }
+
+    if (n < 0)
+    {
+        document.getElementById('msg').innerHTML = "No negative numbers please.  Try again.";
+        return;
+    }
+
     a = "";
     var test_array = n.toString().split(".");
     var d_str = test_array[0];
     var cents = "and " + test_array[1] + "/100 dollars";
+
+    if (d_str.length > 15)
+    {
+        document.getElementById('msg').innerHTML = "Too big. Please make the number less than a quadrillion. Try again.";
+        return;
+    }
+
+    if (d_str.length == 0)
+    {
+        document.getElementById('msg').innerHTML = "Please include a dollar amount. Try again.";
+        return;
+    }
+
+    if (typeof(test_array[1]) === "undefined")
+    {
+        document.getElementById('msg').innerHTML = "Please include cents.  Try again";
+        return;
+    }
+
+    if (test_array[1].length != 2)
+    {
+        document.getElementById('msg').innerHTML = "Please include 2 decimal places.  Try again.";
+        return;
+    }
+    
 
     dollars_to_str(d_str);
     alert (n + " is " +  a.substr(1,1).toUpperCase() + a.substr(2) + cents);

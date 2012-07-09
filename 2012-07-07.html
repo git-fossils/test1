@@ -15,5 +15,7 @@ Convert 2523.04
 Enter a dollar value and click 'Submit Query' to convert.
 <form>
 <input type='text' id="n">
-<input type="submit" onclick="convert_number(document.getElementById('n').value)">
+<input type="submit" onclick="convert_number(document.getElementById('n').value);return false;">
+<input type="reset">
 </form>
+<div id="msg"></div>
